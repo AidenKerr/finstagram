@@ -1,11 +1,6 @@
 1) file upload for posts
+    not done because heroku
 
 2) finish userpages
-
-3) fix 404 page (larger than 1 screen)
-
-4) login when logged in (redirect)
-
-5) error when posting while not logged in
-
-6) error when /posts/:id does not exist
+    rectangular avatars are oval
+    data

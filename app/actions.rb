@@ -47,8 +47,12 @@ get /\A\/user\/([\w]+)\z/ do
 end
 
 get "/signup" do
-    @user = User.new
-    erb :signup
+    if !current_user
+        @user = User.new
+        erb :signup
+    else
+        redirect to("/")
+    end
 end
 
 post "/signup" do
@@ -87,7 +91,11 @@ post "/signup" do
 end
 
 get "/login" do
-    erb :login
+    if !current_user
+        erb :login
+    else
+        redirect to("/")
+    end
 end
 
 post "/login" do
@@ -113,8 +121,12 @@ get "/logout" do
 end
 
 get "/posts/new" do
-    @post = Post.new
-    erb :"posts/new"
+    if current_user
+        @post = Post.new
+        erb :"posts/new"
+    else
+        redirect (back)
+    end
 end
 
 post "/posts" do
@@ -134,8 +146,12 @@ post "/posts" do
 end
 
 get "/posts/:id" do
-    @post = Post.find(params[:id])
-    erb :"posts/show"
+    if Post.exists?(params[:id])
+        @post = Post.find(params[:id])
+        erb :"posts/show"
+    else
+        redirect (back)
+    end
 end
 
 post "/comments" do
