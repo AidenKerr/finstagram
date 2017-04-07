@@ -1,0 +1,28 @@
+<article class="post">
+    <div class="user-info">
+        <a href="/user/<%= post.user.username %>">
+            <img src="<%= post.user.avatar_url %>" alt="<%= post.user.username %>" class="avatar"/>
+            <h2><%= post.user.username %></h2>
+        </a>
+        <h3><%= post.humanized_time_ago %></h3>
+    </div>
+    <a class="photo" href="/posts/<%= post.id %>">
+        <img src="<%= post.photo_url %>" alt="Post by <%= post.user.username %>"/>
+    </a>
+    <div class="actions">
+        <%= erb(:"shared/likes", { locals: { post: post }}) %>
+        <span class="comment-count"><%= post.comment_count %> comments</span>
+    </div>
+    <% if current_user && allow_new_comment %>
+        <%= erb(:"shared/new_comment", { locals: { post: post }}) %>
+    <% end %>
+    <ul class="comments">
+        <% post.comments.each do |comment| %>
+            <li>
+                <p>
+                    <%= comment.user.username %>: <%= comment.text %>
+                </p>
+            </li>
+        <% end %>
+    </ul>
+</article>

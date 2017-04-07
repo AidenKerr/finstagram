@@ -1,0 +1,39 @@
+<main role="signup">
+    <h2>Signup</h2>
+    <ul class="errors">
+        <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+    <form method="POST" enctype="multipart/form-data" action="/signup">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="<%= @user.email %>">
+        </div>
+        
+        <div class="form-group">
+            <label for="avatar_url">Avatar URL</label>
+            <label for="avatar_url">(Required as a replacement if upload fails</label>
+            <input type="text" id="avatar_url" name="avatar_url" value="<%= @user.avatar_url %>">
+        </div>
+        
+        <div class="form-group">
+            <label for="file">Avatar (upload)</label>
+            <input type="file" id="file" name="file">
+        </div>
+        
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="<%= @user.username %>">
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+        </div>
+        
+        <div class="form-group">
+            <button class="button" type="submit">SignUp</button>
+        </div>
+    </form>
+</main>

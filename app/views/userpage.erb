@@ -1,0 +1,27 @@
+<% posts = @posts %>
+<div class="user-profile">
+    <div>
+        <%= @userpage.username %> <br>
+        <img src="<%= @userpage.avatar_url %>"/>
+    </div>
+    <div class="stats">
+        <!-- POSTS -->
+        <div>
+            Posts <br>
+            num
+        </div>
+        <!-- LIKES -->
+        <div>
+            Likes
+        </div>
+        <!-- COMMENTS -->
+        <div>
+            Comments
+        </div>
+    </div>
+</div>
+<main> <!-- role? -->
+    <% posts.each do |post| %>
+        <%= erb(:"shared/post", {locals: {post: post, allow_new_comment: false}}) %>
+    <% end %>
+</main>
